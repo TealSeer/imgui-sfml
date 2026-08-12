@@ -26,7 +26,7 @@ if(IMGUI_SFML_FIND_SFML)
   if(NOT BUILD_SHARED_LIBS)
     set(SFML_STATIC_LIBRARIES ON)
   endif()
-  find_package(SFML 3 REQUIRED COMPONENTS Graphics)
+  find_package(SFML 3.1 REQUIRED COMPONENTS Graphics)
 endif()
 
 # ImGui does not provide native support for CMakeLists, workaround for now to have

@@ -25,7 +25,7 @@ jobs:
       matrix:
         platform:
         - { name: Windows MSVC,    os: windows-2025 }
-        - { name: Windows ClangCL, os: windows-2025, flags: -T ClangCL }
+        - { name: Windows ClangCL, os: windows-2025, flags: -GNinja -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl }
         - { name: Windows Clang,   os: windows-2025, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: Linux GCC,       os: ubuntu-22.04, flags: -GNinja }
         - { name: Linux Clang,     os: ubuntu-22.04, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
@@ -52,6 +52,12 @@ jobs:
       run: |
         sudo apt update
         sudo apt install llvm xorg-dev libxrandr-dev libxcursor-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev
+
+    - name: Setup Visual Studio Developer Command Prompt
+      if: runner.os == 'Windows'
+      uses: TheMrMilchmann/setup-msvc-dev@v4
+      with:
+        arch: x64
 
     - name: Checkout ImGui
       uses: actions/checkout@v4

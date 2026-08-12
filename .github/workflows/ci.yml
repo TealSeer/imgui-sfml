@@ -78,7 +78,7 @@ jobs:
           ${{matrix.config.flags}}
 
     - name: Build SFML
-      run: cmake --build sfml/build --config ${{matrix.type.name}} --target install
+      run: cmake --build sfml/build --build-config ${{matrix.type.name}} --target install
 
     - name: Checkout ImGui-SFML
       uses: actions/checkout@v4
